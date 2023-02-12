@@ -4,7 +4,7 @@
     class Ethernet {
 
         private $adminStatus;
-        private $openStatus;
+        private $operStatus;
 
         public function __construct(){
         }
@@ -18,12 +18,12 @@
             return $this;
         }
 
-        public function getOpenStatus() {
-            return $this->openStatus;
+        public function getOperStatus() {
+            return $this->operStatus;
         }
 
-        public function setOpenStatus($openStatus): self {
-            $this->openStatus = $openStatus;
+        public function setOperStatus($operStatus): self {
+            $this->operStatus = $operStatus;
             return $this;
         }
 

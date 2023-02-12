@@ -11,7 +11,11 @@
         }
 
         public function addEthernet($fpc, $pic, $port) {
-            $this->ethernet[$fpc][$pic][$port] = new Ethernet($this);
+            if(is_numeric($fpc) && is_numeric($pic) && is_numeric($port)){
+                if(!array_key_exists($fpc, $this->ethernet)) $this->ethernet[$fpc][$pic][$port] = new Ethernet($this);
+                if(!array_key_exists($pic, $this->ethernet[$fpc])) $this->ethernet[$fpc][$pic][$port] = new Ethernet($this);
+                if(!array_key_exists($port, $this->ethernet[$fpc][$pic])) $this->ethernet[$fpc][$pic][$port] = new Ethernet($this);
+            }
             ksort($this->ethernet[$fpc]);
             ksort($this->ethernet[$fpc][$pic]);
             return $this->ethernet[$fpc][$pic][$port];
