@@ -18,7 +18,13 @@
         }
 
         public function getEthernet($fpc = null, $pic = null, $port = null) {
-            // TODO: Implement getEthernet() method.
+            if(is_numeric($fpc) && is_numeric($pic) && is_numeric($port)){
+                if(!array_key_exists($fpc, $this->ethernet)) $this->addEthernet($fpc, $pic, $port);
+                if(!array_key_exists($pic, $this->ethernet[$fpc])) $this->addEthernet($fpc, $pic, $port);
+                if(!array_key_exists($port, $this->ethernet[$fpc][$pic])) $this->addEthernet($fpc, $pic, $port);
+
+                return $this->ethernet[$fpc][$pic][$port];
+            } else return $this->ethernet;
         }
 
         public function setEthernet($fpc, $pic, $port) {
