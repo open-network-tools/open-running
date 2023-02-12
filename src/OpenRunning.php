@@ -5,6 +5,8 @@
 
     class OpenRunning implements OpenRunningInterface {
 
+        private $interfaces;
+
         public function __construct() {
         }
 
