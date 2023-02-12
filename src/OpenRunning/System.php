@@ -7,6 +7,7 @@
 
         private $baseUnitStack;
         private $installedLicense = [];
+        private $mgmtIp;
         private $sizeStack;
         private $stackUnit = [];
         private $switchUptime;
@@ -34,6 +35,15 @@
             foreach ($this->installedLicense as $k => $v){
                 if($v == $name) unset($this->installedLicense[$k]);
             }
+            return $this;
+        }
+
+        public function getMgmtIp() {
+            return $this->mgmtIp;
+        }
+
+        public function setMgmtIp($mgmtIp): self {
+            $this->mgmtIp = $mgmtIp;
             return $this;
         }
 
