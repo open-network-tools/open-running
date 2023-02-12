@@ -9,6 +9,7 @@
         private $installedLicense = [];
         private $sizeStack;
         private $stackUnit = [];
+        private $switchUptime;
         private $sysName;
 
         public function getBaseUnitStack() {
@@ -58,6 +59,15 @@
                 if(array_key_exists($id, $this->stackUnit)) return $this->stackUnit[$id];
             }
             return $this->stackUnit;
+        }
+
+        public function getSwitchUptime() {
+            return $this->switchUptime;
+        }
+
+        public function setSwitchUptime($switchUptime): self {
+            $this->switchUptime = $switchUptime;
+            return $this;
         }
 
         public function getSysName() {

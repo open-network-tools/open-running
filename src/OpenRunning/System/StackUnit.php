@@ -7,8 +7,18 @@
         private $powerStatus;
         private $serialNumber;
         private $switchModel;
+        private $switchUptime;
         private $versionFirmware;
         private $versionSoftware;
+
+        public function addFanStatus($id, $status){
+            $this->fanStatus[$id] = $status;
+            return $this;
+        }
+
+        public function getFanStatus(){
+            return $this->fanStatus;
+        }
 
         public function getPowerStatus() {
             return $this->powerStatus;
@@ -34,6 +44,15 @@
 
         public function setSwitchModel($switchModel): self {
             $this->switchModel = $switchModel;
+            return $this;
+        }
+
+        public function getSwitchUptime() {
+            return $this->switchUptime;
+        }
+
+        public function setSwitchUptime($switchUptime): self {
+            $this->switchUptime = $switchUptime;
             return $this;
         }
 
