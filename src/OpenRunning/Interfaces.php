@@ -5,7 +5,7 @@
 
     class Interfaces {
 
-        private $ethernet;
+        private $ethernet = [];
 
         public function __construct() {
         }
