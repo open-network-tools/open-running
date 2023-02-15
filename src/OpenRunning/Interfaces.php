@@ -82,7 +82,7 @@
         public function countEthernetByUnit($unit, $mode = null){
             if($mode == "adminUp"){
                 $count = 0;
-                foreach ($this->getEthernet($unit) as $pic){
+                foreach ($this->getEthernet($unit)[$unit] as $pic){
                     foreach ($pic as $port){
                         if($port->getAdminStatus()) $count = $count + 1;
                     }
@@ -90,7 +90,7 @@
                 return $count;
             } elseif($mode == "adminDown"){
                 $count = 0;
-                foreach ($this->getEthernet($unit) as $pic){
+                foreach ($this->getEthernet($unit)[$unit] as $pic){
                     foreach ($pic as $port){
                         if(!$port->getAdminStatus()) $count = $count + 1;
                     }
@@ -98,7 +98,7 @@
                 return $count;
             } elseif($mode == "operUp"){
                 $count = 0;
-                foreach ($this->getEthernet($unit) as $pic){
+                foreach ($this->getEthernet($unit)[$unit] as $pic){
                     foreach ($pic as $port){
                         if(!$port->getOperStatus()) $count = $count + 1;
                     }
@@ -106,7 +106,7 @@
                 return $count;
             } elseif($mode == "operDown"){
                 $count = 0;
-                foreach (!$this->getEthernet($unit) as $pic){
+                foreach (!$this->getEthernet($unit)[$unit] as $pic){
                     foreach ($pic as $port){
                         if(!$port->getOperStatus()) $count = $count + 1;
                     }
