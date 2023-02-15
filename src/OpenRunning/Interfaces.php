@@ -21,6 +21,26 @@
             return $this->ethernet[$fpc][$pic][$port];
         }
 
+        public function countEthernet($mode = null){
+            if($mode == "adminUp"){
+                return 0;
+            } elseif($mode == "adminDown"){
+                return 0;
+            } elseif($mode == "operUp"){
+                return 0;
+            } elseif($mode == "operDown"){
+                return 0;
+            } else {
+                $count = 0;
+                foreach ($this->getEthernet() as $fpc){
+                    foreach ($fpc as $pic){
+                        $count = $count + sizeof($pic);
+                    }
+                }
+                return $count;
+            }
+        }
+
         public function getEthernet($fpc = null, $pic = null, $port = null) {
             if(is_numeric($fpc) && is_numeric($pic) && is_numeric($port)){
                 if(!array_key_exists($fpc, $this->ethernet)) $this->addEthernet($fpc, $pic, $port);
