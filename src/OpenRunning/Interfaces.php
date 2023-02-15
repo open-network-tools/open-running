@@ -10,6 +10,12 @@
         public function __construct() {
         }
 
+        /**
+         * @param $fpc
+         * @param $pic
+         * @param $port
+         * @return Ethernet
+         */
         public function addEthernet($fpc, $pic, $port) {
             if(is_numeric($fpc) && is_numeric($pic) && is_numeric($port)){
                 if(!array_key_exists($fpc, $this->ethernet)) $this->ethernet[$fpc][$pic][$port] = new Ethernet($this);
@@ -23,13 +29,45 @@
 
         public function countEthernet($mode = null){
             if($mode == "adminUp"){
-                return 0;
+                $count = 0;
+                foreach ($this->getEthernet() as $fpc){
+                    foreach ($fpc as $pic){
+                        foreach ($pic as $port){
+                            if($port->getAdminStatus()) $count = $count + 1;
+                        }
+                    }
+                }
+                return $count;
             } elseif($mode == "adminDown"){
-                return 0;
+                $count = 0;
+                foreach ($this->getEthernet() as $fpc){
+                    foreach ($fpc as $pic){
+                        foreach ($pic as $port){
+                            if(!$port->getAdminStatus()) $count = $count + 1;
+                        }
+                    }
+                }
+                return $count;
             } elseif($mode == "operUp"){
-                return 0;
+                $count = 0;
+                foreach ($this->getEthernet() as $fpc){
+                    foreach ($fpc as $pic){
+                        foreach ($pic as $port){
+                            if($port->getOpenStatus()) $count = $count + 1;
+                        }
+                    }
+                }
+                return $count;
             } elseif($mode == "operDown"){
-                return 0;
+                $count = 0;
+                foreach ($this->getEthernet() as $fpc){
+                    foreach ($fpc as $pic){
+                        foreach ($pic as $port){
+                            if(!$port->getOpenStatus()) $count = $count + 1;
+                        }
+                    }
+                }
+                return $count;
             } else {
                 $count = 0;
                 foreach ($this->getEthernet() as $fpc){
