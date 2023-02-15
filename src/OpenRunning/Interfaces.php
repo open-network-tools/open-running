@@ -53,7 +53,7 @@
                 foreach ($this->getEthernet() as $fpc){
                     foreach ($fpc as $pic){
                         foreach ($pic as $port){
-                            if($port->getOpenStatus()) $count = $count + 1;
+                            if($port->getOperStatus()) $count = $count + 1;
                         }
                     }
                 }
@@ -63,7 +63,7 @@
                 foreach ($this->getEthernet() as $fpc){
                     foreach ($fpc as $pic){
                         foreach ($pic as $port){
-                            if(!$port->getOpenStatus()) $count = $count + 1;
+                            if(!$port->getOperStatus()) $count = $count + 1;
                         }
                     }
                 }
