@@ -6,6 +6,7 @@
     class Interfaces {
 
         private $ethernet = [];
+        private $topology = [];
 
         public function __construct() {
         }
@@ -50,104 +51,6 @@
             return $count;
         }
 
-        /**
-        public function countEthernet($mode = null){
-            if($mode == "adminUp"){
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        foreach ($pic as $port){
-                            if($port->getAdminStatus()) $count = $count + 1;
-                        }
-                    }
-                }
-                return $count;
-            } elseif($mode == "adminDown"){
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        foreach ($pic as $port){
-                            if(!$port->getAdminStatus()) $count = $count + 1;
-                        }
-                    }
-                }
-                return $count;
-            } elseif($mode == "operUp"){
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        foreach ($pic as $port){
-                            if($port->getOperStatus()) $count = $count + 1;
-                        }
-                    }
-                }
-                return $count;
-            } elseif($mode == "operDown"){
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        foreach ($pic as $port){
-                            if(!$port->getOperStatus()) $count = $count + 1;
-                        }
-                    }
-                }
-                return $count;
-            } else {
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        $count = $count + sizeof($pic);
-                    }
-                }
-                return $count;
-            }
-        }
-
-        public function countEthernetByUnit($unit, $mode = null){
-            if($mode == "adminUp"){
-                $count = 0;
-                foreach ($this->getEthernet($unit)[$unit] as $pic){
-                    foreach ($pic as $port){
-                        if($port->getAdminStatus()) $count = $count + 1;
-                    }
-                }
-                return $count;
-            } elseif($mode == "adminDown"){
-                $count = 0;
-                foreach ($this->getEthernet($unit)[$unit] as $pic){
-                    foreach ($pic as $port){
-                        if(!$port->getAdminStatus()) $count = $count + 1;
-                    }
-                }
-                return $count;
-            } elseif($mode == "operUp"){
-                $count = 0;
-                foreach ($this->getEthernet($unit)[$unit] as $pic){
-                    foreach ($pic as $port){
-                        if(!$port->getOperStatus()) $count = $count + 1;
-                    }
-                }
-                return $count;
-            } elseif($mode == "operDown"){
-                $count = 0;
-                foreach (!$this->getEthernet($unit)[$unit] as $pic){
-                    foreach ($pic as $port){
-                        if(!$port->getOperStatus()) $count = $count + 1;
-                    }
-                }
-                return $count;
-            } else {
-                $count = 0;
-                foreach ($this->getEthernet() as $fpc){
-                    foreach ($fpc as $pic){
-                        $count = $count + sizeof($pic);
-                    }
-                }
-                return $count;
-            }
-        }
-         * */
-
         public function getEthernet($fpc = null, $pic = null, $port = null) {
             if(is_numeric($fpc) && is_numeric($pic) && is_numeric($port)){
                 if(array_key_exists($fpc, $this->ethernet)) return $this->ethernet[$fpc];
@@ -164,6 +67,15 @@
 
         public function removeEthernet($fpc = null, $pic = null, $port = null) {
             // TODO: Implement removeEthernet() method.
+        }
+
+        public function addTopology($name){
+            $this->topology[] = $name;
+            return $this;
+        }
+
+        public function getTopology(){
+            return $this->topology;
         }
 
     }
